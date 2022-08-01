@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { NavLink, useLocation } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { isDarkAtom } from "./atoms";
 
 const Contaitner = styled.div`
   padding: 0px 20px;
@@ -23,7 +25,7 @@ const CoinList = styled.ul``;
 
 const Coin = styled.li`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
 
   border-radius: 15px;
   margin-bottom: 10px;
@@ -68,6 +70,8 @@ interface ICoin {
 }
 
 function Coins() {
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   console.log(data);
   // const [coins, setCoins] = useState<CoinInterface[]>([]);
@@ -87,6 +91,7 @@ function Coins() {
     <Contaitner>
       <Header>
         <Title>Coins</Title>
+        <button onClick={toggleDarkAtom}>Toggle Button</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
