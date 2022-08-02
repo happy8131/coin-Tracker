@@ -23,7 +23,7 @@ function Chart({ coinId }: ChartPros) {
   const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId)
   );
-  const isDark = useRecoilValue(isDarkAtom);
+  const isDarks = useRecoilValue(isDarkAtom); //atom값을 가져와 사용한다.
   console.log(data?.map((price) => price.close));
   return (
     <div>
@@ -44,7 +44,7 @@ function Chart({ coinId }: ChartPros) {
           ]}
           options={{
             theme: {
-              mode: isDark ? "dark" : "light",
+              mode: isDarks ? "dark" : "light",
             },
             chart: {
               height: 500,

@@ -72,7 +72,7 @@ a {
 `;
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
+  const isDark = useRecoilValue(isDarkAtom); //atom 값이 바뀌면 컴포넌트도 변경된 값으로 다시 리렌더링 될 거다
   return (
     <>
       {" "}
