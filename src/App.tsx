@@ -2,7 +2,6 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { darkTheme, lightTheme } from "./theme";
-import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./routes/atoms";
 
@@ -72,7 +71,7 @@ a {
 `;
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
+  const isDark = useRecoilValue(isDarkAtom); //atom 값이 바뀌면 컴포넌트도 변경된 값으로 다시 리렌더링 될 거다
   return (
     <>
       {" "}
