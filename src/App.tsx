@@ -5,7 +5,7 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
 
@@ -44,17 +44,18 @@ function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
 
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
+    // draggableId 클릭한 값, destination 도착점 , source 클릭한지점
     if (!destination) return;
     setToDos((oldToDos) => {
       const toDosCopy = [...oldToDos];
       // 1) Delete item on source.index
-      console.log("Delete item on", source.index);
+      console.log("Delete item on", source.index); //드래그한 인덱스
       console.log(toDosCopy);
-      toDosCopy.splice(source.index, 1);
+      toDosCopy.splice(source.index, 1); //드래그한 인덱스
       console.log("Delete item");
       console.log(toDosCopy);
       // 2) Put back the item on the destination.index
-      toDosCopy.splice(destination?.index, 0, draggableId);
+      toDosCopy.splice(destination?.index, 0, draggableId); //마우스 놓는 자리
 
       return toDosCopy;
     });
