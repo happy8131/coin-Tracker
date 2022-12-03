@@ -31,7 +31,6 @@ function App() {
 
     if (destination?.droppableId === source.droppableId) {
       // same board movement.
-
       setToDos((allBoards) => {
         console.log(allBoards);
         const boardCopy = [...allBoards[source.droppableId]];
